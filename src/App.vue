@@ -3,7 +3,7 @@
     <h1>Friends & Bicycles</h1>
     <p>{{ name }} - {{ age }}</p>
     <BicycleList :bicycles = "bicycles" />
-    <BicycleMap/>
+    <BicycleMap :bicycles = "bicycles" />
     <button @click="changeName('rob')"> Change Name</button>
   </div>
 </template>
@@ -27,8 +27,14 @@ export default defineComponent({
       {
         color: 'red',
         model: 'Cliff',
-        location: '1287',
+        coordinates: [6.2476, -75.5658],
         id: '1'
+      },
+      {
+        color: 'blue',
+        model: 'Cannondale',
+        coordinates: [6.24, -75.5658],
+        id: '2'
       }
     ])
 

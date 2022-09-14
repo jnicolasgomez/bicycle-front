@@ -1,7 +1,7 @@
 interface Bicycle {
     color: string,
     model: string,
-    location: string,
+    coordinates: [number, number]
     id: string
 }
 

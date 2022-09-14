@@ -7,7 +7,7 @@
                     <p> {{ bicycle.color}} </p>
                 </div>
                 <div class="location">
-                    <p> {{ bicycle.location}} </p>
+                    <p> {{ bicycle.coordinates}} </p>
                 </div>
             </li>
         </ul>
@@ -50,11 +50,7 @@ export default defineComponent({
     .color {
         display: flex;
     }
-    .color img {
-        width: 30px;
-    }
     .color p {
-        color: #17bf66;
         font-weight: bold;
         margin: 10px 4px;
     }

@@ -1,62 +1,52 @@
 <template>
-    <l-map v-model="zoom"
-      v-model:zoom="zoom"
-      :center="[6.2476, -75.5658]"
-      @move="log('move')"
-      style="height: 50vh; width: 50vw">
-        <l-tile-layer
-            url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
-        ></l-tile-layer>
-        <l-control-layers />
-        <l-marker :lat-lng="[0, 0]" draggable @moveend="log('moveend')">
-            <l-tooltip>
-            lol
-            </l-tooltip>
-        </l-marker>
-
-        <l-marker :lat-lng="[6.2476, -75.5658]">
-            <l-icon :icon-url="iconUrl" :icon-size="iconSize" />
-        </l-marker>
-        <l-geo-json :geojson="geojson" :options="geojsonOptions" />
-    </l-map>
+    <div class="map">
+        <l-map v-model="zoom"
+        v-model:zoom="zoom"
+        :center="initialCoordinates"
+        @move="log('move')"
+        >
+            <l-tile-layer
+                url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+            ></l-tile-layer>
+            <l-control-layers />
+            <l-marker v-for="bicycle in bicycles" :key="bicycle.id" :lat-lng="bicycle.coordinates ">
+                <l-icon :icon-url="iconUrl" :icon-size="iconSize" />
+                <l-popup>
+                    <p>{{ bicycle.id }}</p>
+                    {{bicycle.coordinates}}
+                </l-popup>
+            </l-marker>
+        </l-map>
+    </div>
+    
 </template>
 
-<script lan>
-    import { LMap, LGeoJson, LTileLayer, LIcon, LMarker } from "@vue-leaflet/vue-leaflet";
+<script lang="ts">
+    import { LMap, LTileLayer, LIcon, LMarker, LPopup } from "@vue-leaflet/vue-leaflet";
     import "leaflet/dist/leaflet.css"
-    import { defineComponent } from "@vue/runtime-core";
+    import Bicycle from '@/types/Bicycle'
+    import { defineComponent, PropType } from "@vue/runtime-core";
     export default defineComponent({
         components: {
             LMap,
-            LGeoJson,
             LTileLayer,
             LIcon,
-            LMarker
+            LMarker,
+            LPopup
+        },
+        props: {
+            bicycles: {
+                required: true,
+                type: Array as PropType<Bicycle[]>
+            }
         },
         data() {
             return {
                 zoom: 15,
+                initialCoordinates: [6.2476, -75.5658],
                 iconWidth: 25,
-                iconHeight: 40,
-                geojson: {
-                    type: "FeatureCollection",
-                    features: [
-                    // ...
-                    ],
-                },
-                geojsonOptions: {
-                    // Options that don't rely on Leaflet methods.
-                },
+                iconHeight: 40
             };
-        },
-        async beforeMount() {
-            // HERE is where to load Leaflet components!
-            const { circleMarker } = await import("leaflet/dist/leaflet-src.esm");
-            console.log('before mount called')
-            // And now the Leaflet circleMarker function can be used by the options:
-            this.geojsonOptions.pointToLayer = (feature, latLng) =>
-            circleMarker(latLng, { radius: 8 });
-            this.mapIsReady = true;
         },
         computed: {
             iconUrl() {
@@ -67,7 +57,7 @@
             },
         },
         methods: {
-            log(a) {
+            log(a: string) {
                 console.log(a);
             },
             changeIcon() {
@@ -81,4 +71,10 @@
 </script>
 
 <style scoped>
+    .map {
+        height: 75vh;
+        width: 50vw;
+        margin: 40px auto;
+        border: 3px solid gray;
+    }
 </style>
