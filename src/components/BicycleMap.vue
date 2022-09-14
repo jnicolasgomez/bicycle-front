@@ -5,7 +5,7 @@
         :maxZoom="maxZoom"
         :minZoom="minZoom"
         :center="initialCoordinates"
-        @move="log('move')"
+        @click="addMarker"
         >
             <l-tile-layer
                 url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -54,7 +54,7 @@
         },
         computed: {
             iconUrl() {
-                return `https://upload.wikimedia.org/wikipedia/commons/0/00/Bicycle-icon.svg`;
+                return `https://freesvg.org/img/1553102662.png`;
             },
             iconSize() {
                 return [this.iconWidth, this.iconHeight];
@@ -70,6 +70,10 @@
                     this.iconWidth = Math.floor(this.iconHeight / 2);
                 }
             },
+            addMarker(event: any) {
+                if (event.latlng)
+                    console.log(event.latlng);
+            }
         },
     });
 </script>
