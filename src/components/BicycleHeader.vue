@@ -1,10 +1,9 @@
 <template>
     <div class="nav">
-        <a href="#">Red Bici</a>
-        <a href="#">Register Bicycle</a>
-        <a href="#">Bicycles</a>
-        <a href="#">Map</a>
+        <router-link to="/">Red Bici</router-link>
+        <router-link to="/register" href="#">Register Bicycle</router-link>
     </div>
+    <router-view/>
 </template>
 
 <script>

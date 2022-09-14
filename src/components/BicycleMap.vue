@@ -44,7 +44,7 @@
         },
         data() {
             return {
-                zoom: 15,
+                zoom: 13,
                 maxZoom: 18,
                 minZoom: 10,
                 initialCoordinates: [6.2476, -75.5658],

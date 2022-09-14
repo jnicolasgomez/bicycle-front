@@ -13,6 +13,7 @@
     "leaflet": "^1.8.0",
     "vue": "^3.2.13",
     "vue-class-component": "^8.0.0-0",
+    "vue-router": "^4.0.3",
     "vue3-google-oauth2": "^1.0.6"
   },
   "devDependencies": {
@@ -23,6 +24,7 @@
     "@vue-leaflet/vue-leaflet": "^0.6.1",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
+    "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-plugin-typescript": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
     "@vue/eslint-config-typescript": "^9.1.0",

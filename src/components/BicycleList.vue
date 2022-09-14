@@ -10,7 +10,7 @@
                     <p> {{ bicycle.coordinates}} </p>
                 </div>
                 <button class="edit-button">Editar</button>
-                <button class="delete-button">Elminiar</button>
+                <button class="delete-button">Eliminar</button>
             </li>
         </ul>
     </div>
@@ -33,7 +33,7 @@ export default defineComponent({
 <style scoped>
     .bicycle-list {
         max-width: 960px;
-        margin: 40px auto;
+        margin: 20px auto;
     }
     .bicycle-list ul {
         padding: 0;
@@ -42,7 +42,7 @@ export default defineComponent({
         list-style-type: none;
         background: white;
         padding: 16px;
-        margin: 16px 0;
+        margin: 8px 0;
         border-radius: 4px;
     }
     .bicycle-list h2 {
