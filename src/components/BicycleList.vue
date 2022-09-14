@@ -9,6 +9,8 @@
                 <div class="location">
                     <p> {{ bicycle.coordinates}} </p>
                 </div>
+                <button class="edit-button">Editar</button>
+                <button class="delete-button">Elminiar</button>
             </li>
         </ul>
     </div>
@@ -53,5 +55,19 @@ export default defineComponent({
     .color p {
         font-weight: bold;
         margin: 10px 4px;
+    }
+
+    button {
+        background: #0b6dff;
+        border: 0;
+        padding: 10px 20px;
+        margin-top: 20px;
+        color: white;
+        border-radius: 20px;
+        cursor:pointer;
+        margin-right: 10px;
+    }
+    .delete-button {
+        background: red;
     }
 </style>

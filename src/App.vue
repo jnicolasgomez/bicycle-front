@@ -2,6 +2,7 @@
   <div class="app">
     <h1>Red Bicicletas</h1>
     <p>{{ name }} - {{ age }}</p>
+    <BicycleForm/>
     <BicycleList :bicycles = "bicycles" />
     <BicycleMap :bicycles = "bicycles" />
     <button @click="changeName('rob')"> Change Name</button>
@@ -14,11 +15,12 @@ import { defineComponent, reactive, ref, toRefs } from 'vue';
 import Bicycle from './types/Bicycle';
 import BicycleList from './components/BicycleList.vue';
 import BicycleMap from './components/BicycleMap.vue';
+import BicycleForm from './components/BicycleForm.vue'
 
 
 export default defineComponent({
   name: 'App',
-  components: {BicycleList, BicycleMap},
+  components: {BicycleList, BicycleMap, BicycleForm},
   setup() {
     const state = reactive({
       name: 'Link',
@@ -26,7 +28,7 @@ export default defineComponent({
     })
 
     const bicycles = ref<Bicycle[]>([]);
-    const bicyclesUrl: string = process.env.BICYCLES_API || 'http://localhost:8080';
+    const bicyclesUrl: string = process.env.VUE_APP_BICYCLES_API || 'http://localhost:3002';
 
     return { ...toRefs(state), bicycles, bicyclesUrl}
   },
