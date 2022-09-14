@@ -14,7 +14,7 @@
             <l-marker v-for="bicycle in bicycles" :key="bicycle.id" :lat-lng="bicycle.coordinates ">
                 <l-icon :icon-url="iconUrl" :icon-size="iconSize" />
                 <l-popup>
-                    <p>{{ bicycle.id }}</p>
+                    <p>{{ bicycle.model }}</p>
                     {{bicycle.coordinates}}
                 </l-popup>
             </l-marker>
@@ -80,5 +80,9 @@
         width: 50vw;
         margin: 40px auto;
         border: 3px solid gray;
+    }
+    .map p {
+        font-weight: bold;
+        margin: 10px 4px;
     }
 </style>

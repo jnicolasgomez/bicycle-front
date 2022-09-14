@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <h1>Friends & Bicycles</h1>
+    <h1>Red Bicicletas</h1>
     <p>{{ name }} - {{ age }}</p>
     <BicycleList :bicycles = "bicycles" />
     <BicycleMap :bicycles = "bicycles" />
@@ -9,10 +9,12 @@
 </template>
 
 <script lang="ts">
+import axios from 'axios';
 import { defineComponent, reactive, ref, toRefs } from 'vue';
-import Bicycle from './types/Bicycle'
-import BicycleList from './components/BicycleList.vue'
+import Bicycle from './types/Bicycle';
+import BicycleList from './components/BicycleList.vue';
 import BicycleMap from './components/BicycleMap.vue';
+
 
 export default defineComponent({
   name: 'App',
@@ -23,22 +25,15 @@ export default defineComponent({
       age: 25 as string | number
     })
 
-    const bicycles = ref<Bicycle[]>([
-      {
-        color: 'red',
-        model: 'Cliff',
-        coordinates: [6.2476, -75.5658],
-        id: '1'
-      },
-      {
-        color: 'blue',
-        model: 'Cannondale',
-        coordinates: [6.24, -75.5658],
-        id: '2'
-      }
-    ])
+    const bicycles = ref<Bicycle[]>([]);
+    const bicyclesUrl: string = process.env.BICYCLES_API || 'http://localhost:8080';
 
-    return { ...toRefs(state), bicycles}
+    return { ...toRefs(state), bicycles, bicyclesUrl}
+  },
+  async mounted() {
+    const url = `${this.bicyclesUrl}/bicycles`;
+    let response = await axios.get(url);
+    this.bicycles = response.data;
   },
   methods: {
     changeName(name: string) {
