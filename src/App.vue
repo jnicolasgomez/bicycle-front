@@ -1,7 +1,6 @@
 <template>
   <div class="app">
-    <h1>Red Bicicletas</h1>
-    <p>{{ name }} - {{ age }}</p>
+    <BicycleHeader/>
     <BicycleForm/>
     <BicycleList :bicycles = "bicycles" />
     <BicycleMap :bicycles = "bicycles" />
@@ -16,11 +15,12 @@ import Bicycle from './types/Bicycle';
 import BicycleList from './components/BicycleList.vue';
 import BicycleMap from './components/BicycleMap.vue';
 import BicycleForm from './components/BicycleForm.vue'
+import BicycleHeader from './components/BicycleHeader.vue'
 
 
 export default defineComponent({
   name: 'App',
-  components: {BicycleList, BicycleMap, BicycleForm},
+  components: {BicycleList, BicycleMap, BicycleForm, BicycleHeader},
   setup() {
     const state = reactive({
       name: 'Link',
@@ -47,5 +47,8 @@ export default defineComponent({
 </script>
 
 <style>
-
+body {
+  padding: 0;
+  margin: 0;
+}
 </style>

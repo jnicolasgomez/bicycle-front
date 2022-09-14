@@ -61,7 +61,7 @@ export default defineComponent({
         background: #0b6dff;
         border: 0;
         padding: 10px 20px;
-        margin-top: 20px;
+        margin-top: 10px;
         color: white;
         border-radius: 20px;
         cursor:pointer;
