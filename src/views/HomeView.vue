@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <h1>Red Bicicletas Mapa</h1>
     <BicycleMap :bicycles = "bicycles" />
   </div>
 </template>
@@ -24,3 +25,10 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+  h1 {
+        max-width: 960px;
+        margin: 20px auto;
+    }
+</style>

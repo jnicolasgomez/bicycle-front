@@ -48,7 +48,7 @@
                 maxZoom: 18,
                 minZoom: 10,
                 initialCoordinates: [6.2476, -75.5658],
-                iconWidth: 25,
+                iconWidth: 40,
                 iconHeight: 40
             };
         },

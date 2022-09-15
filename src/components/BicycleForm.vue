@@ -83,6 +83,7 @@ export default defineComponent({
         text-align: left;
         padding: 40px;
         border-radius: 10px;
+        box-shadow: 3px 3px 7px rgba(0,0,0,0.4);
     }
     label {
         color: gray;
@@ -112,6 +113,10 @@ export default defineComponent({
         color: white;
         border-radius: 20px;
         cursor:pointer;
+        box-shadow: 3px 3px 7px rgba(0,0,0,0.4);
+    }
+    button:hover {
+        background: #150183;
     }
     submit {
         text-align: center;

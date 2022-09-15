@@ -69,6 +69,7 @@ export default defineComponent({
         padding: 16px;
         margin: 8px 0;
         border-radius: 4px;
+        box-shadow: 3px 3px 7px rgba(0,0,0,0.4);
     }
     .bicycle-list h2 {
         margin: 0 0 10px;
@@ -91,11 +92,21 @@ export default defineComponent({
         border-radius: 20px;
         cursor:pointer;
         margin-right: 10px;
+        box-shadow: 3px 3px 7px rgba(0,0,0,0.4);
     }
     .delete-button {
         background: red;
     }
+    .delete-button:hover {
+        background: #910000;
+    }
     .add-button {
         background: rgb(0, 134, 7);
+    }
+    .add-button:hover {
+        background: #007006;
+    }
+    .edit-button:hover {
+        background: #150183;
     }
 </style>
