@@ -15,4 +15,16 @@ async function createBicycle(bicycle: Bicycle) {
     return response.data;
 }
 
-export {getBicycles, createBicycle};
+async function editBicycle(id: string, bicycle: Bicycle) {
+    const url = `${bicyclesUrl}/bicycles/${id}`;
+    const response = await axios.put(url, bicycle);
+    return response.data;
+}
+
+async function deleteBicycle(bicycle: Bicycle) {
+    const url = `${bicyclesUrl}/bicycles/${bicycle._id}`;
+    const response = await axios.delete(url);
+    return response.data;
+}
+
+export {getBicycles, createBicycle, editBicycle, deleteBicycle};

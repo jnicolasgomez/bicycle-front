@@ -1,7 +1,8 @@
 <template>
     <div class="nav">
-        <router-link to="/">Red Bici</router-link>
-        <router-link to="/register" href="#">Register Bicycle</router-link>
+        <router-link to="/">Mapa</router-link>
+        <router-link to="/bicycles" href="#">Bicicletas</router-link>
+        <router-link to="/create" href="#">Nueva Bicicleta</router-link>
     </div>
     <router-view/>
 </template>

@@ -1,18 +1,18 @@
 <template>
   <div class="home">
-    <BicycleMap :bicycles = "bicycles" />
+    <BicycleList :bicycles = "bicycles" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import BicycleMap from '../components/BicycleMap.vue'
+import BicycleList from '../components/BicycleList.vue'
 import {getBicycles} from '../services/bicyclesService'
 import Bicycle from '../types/Bicycle';
 export default defineComponent({
   name: 'HomeView',
   components: {
-    BicycleMap,
+    BicycleList
   },
   setup () {
     const bicycles = ref<Bicycle[]>([]);

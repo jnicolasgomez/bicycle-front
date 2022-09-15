@@ -14,8 +14,8 @@
             <l-marker v-for="bicycle in bicycles" :key="bicycle.id" :lat-lng="bicycle.coordinates ">
                 <l-icon :icon-url="iconUrl" :icon-size="iconSize" />
                 <l-popup>
-                    <p>{{ bicycle.model }}</p>
-                    {{bicycle.coordinates}}
+                    <p>{{bicycle.brand}} - {{bicycle.color}} [{{ bicycle.model }}]</p>
+                    ({{bicycle.coordinates[0]}},{{bicycle.coordinates[1]}})
                 </l-popup>
             </l-marker>
         </l-map>

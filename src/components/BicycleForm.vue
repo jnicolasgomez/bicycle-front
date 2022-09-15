@@ -1,6 +1,6 @@
 <template>
     <form @submit.prevent="handleSubmit">
-        <h1>Registrar Bicicleta</h1>
+        <h1>{{type}} Bicicleta</h1>
         <label>Modelo</label>
         <select required v-model="model">
             <option value="Ruta">Ruta</option>
@@ -15,24 +15,34 @@
         <input v-model="lat" type="number" step="0.0001" min="6.22" max="6.28" required>
         <label>Longitud</label>
         <input v-model="long" type="number" min="-75.6" max="-75.53" step="0.0001" required>
-        <button>Registrar</button>
+        <button> {{type}} </button>
     </form>
 </template>
 <script lang="ts">
+import router from '@/router'
 import Bicycle from '@/types/Bicycle'
 import { defineComponent } from 'vue'
-import {createBicycle} from '../services/bicyclesService'
+import {createBicycle, editBicycle} from '../services/bicyclesService'
 
 export default defineComponent({
     setup() {
         
     },
+    props: {
+        type: {
+            required: true,
+            type: String
+        },
+        bicycleId: {
+            type: String
+        }
+    },
     data() {
         return {
             model: '',
-            color: 'gfhf',
-            lat: 0,
-            long: 0,
+            color: '',
+            lat: 6.25,
+            long: -75.56,
             brand: ''
         }
     },
@@ -45,8 +55,22 @@ export default defineComponent({
                 coordinates,
                 brand: this.brand
             }
-            const response = await createBicycle(bicycle);
-            console.log(response)
+            if (this.type === "Editar") {
+                console.log(this.bicycleId);
+                if (this.bicycleId) {
+                    const response = await editBicycle(this.bicycleId, bicycle);
+                    console.log('Bicycle edited successfully');
+                    console.log(response);
+                } else (
+                    console.log('Error editing Bicycle')
+                )
+                
+            } else if (this.type === "Crear") {
+                const response = await createBicycle(bicycle);
+                console.log('Bicycle created successfully');
+                console.log(response);
+            }
+            router.push({ path: '/', replace: true });
         }
     }
 })

@@ -1,8 +1,8 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import BicycleMap from '../components/BicycleMap.vue'
-import BicycleList from '../components/BicycleList.vue'
 import BicycleForm from '../components/BicycleForm.vue'
 import HomeView from '../views/HomeView.vue'
+import BicyclesView from '../views/BicyclesView.vue'
+import FormView from '../views/FormView.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -13,12 +13,23 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/bicycles',
     name: 'bicycles',
-    component: BicycleList
+    component: BicyclesView
   },
   {
-    path: '/register',
-    name: 'register',
-    component: BicycleForm
+    path: '/edit',
+    name: 'edit',
+    component: FormView,
+    props: {
+      type: "Editar"
+    }
+  },
+  {
+    path: '/create',
+    name: 'create',
+    component: FormView,
+    props: {
+      type: "Crear"
+    }
   }
 ]
 

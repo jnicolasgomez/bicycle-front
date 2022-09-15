@@ -9,7 +9,7 @@
                 <div class="location">
                     <p> {{ bicycle.coordinates}} </p>
                 </div>
-                <button class="edit-button">Editar</button>
+                <button @click="editBicycle(bicycle)" class="edit-button">Editar</button>
                 <button class="delete-button">Eliminar</button>
             </li>
         </ul>
@@ -17,6 +17,7 @@
 </template>
 
 <script lang="ts">
+import router from '@/router';
 import Bicycle from '@/types/Bicycle'
 import { defineComponent, PropType } from 'vue'
 
@@ -25,6 +26,12 @@ export default defineComponent({
         bicycles: {
             required: true,
             type: Array as PropType<Bicycle[]>
+        }
+    },
+    methods: {
+        editBicycle(bicycle: Bicycle) {
+            console.log('id', bicycle._id);
+            router.push({ path: '/edit', replace: true, params: {bicycleId: bicycle._id }});
         }
     }
 })
