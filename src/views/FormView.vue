@@ -1,6 +1,6 @@
 <template>
   <div class="form">
-    <BicycleForm :type = "this.type" :bicycleId = "this.$route.params.bicycleId"/>
+    <BicycleForm :type = "this.type" :bicycleId = "this.$route.params.id"/>
   </div>
 </template>
 
@@ -24,9 +24,6 @@ export default defineComponent({
     bicycleId: {
       type: String
     }
-  },
-  mounted() {
-    console.log('params bicycle id', this.$route)
   }
 });
 </script>

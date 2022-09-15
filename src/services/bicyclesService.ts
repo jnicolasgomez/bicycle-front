@@ -21,8 +21,8 @@ async function editBicycle(id: string, bicycle: Bicycle) {
     return response.data;
 }
 
-async function deleteBicycle(bicycle: Bicycle) {
-    const url = `${bicyclesUrl}/bicycles/${bicycle._id}`;
+async function deleteBicycle(id: string) {
+    const url = `${bicyclesUrl}/bicycles/${id}`;
     const response = await axios.delete(url);
     return response.data;
 }

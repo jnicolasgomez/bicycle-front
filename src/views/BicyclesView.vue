@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <BicycleList :bicycles = "bicycles" />
+    <BicycleList :bicycleList = "bicycles" />
   </div>
 </template>
 

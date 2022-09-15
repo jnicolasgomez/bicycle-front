@@ -56,7 +56,6 @@ export default defineComponent({
                 brand: this.brand
             }
             if (this.type === "Editar") {
-                console.log(this.bicycleId);
                 if (this.bicycleId) {
                     const response = await editBicycle(this.bicycleId, bicycle);
                     console.log('Bicycle edited successfully');
@@ -70,7 +69,7 @@ export default defineComponent({
                 console.log('Bicycle created successfully');
                 console.log(response);
             }
-            router.push({ path: '/', replace: true });
+            router.push({ path: '/bicycles', replace: true });
         }
     }
 })

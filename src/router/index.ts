@@ -16,7 +16,7 @@ const routes: Array<RouteRecordRaw> = [
     component: BicyclesView
   },
   {
-    path: '/edit',
+    path: '/edit/:id',
     name: 'edit',
     component: FormView,
     props: {

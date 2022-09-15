@@ -1,7 +1,7 @@
 <template>
     <div class="bicycle-list">
         <ul>
-            <li v-for="bicycle in bicycles" :key="bicycle.id">
+            <li v-for="bicycle in bicycles" :key="bicycle._id">
                 <h2>{{ bicycle.model }}</h2>
                 <div class="color">
                     <p> {{ bicycle.color}} </p>
@@ -9,31 +9,49 @@
                 <div class="location">
                     <p> {{ bicycle.coordinates}} </p>
                 </div>
-                <button @click="editBicycle(bicycle)" class="edit-button">Editar</button>
-                <button class="delete-button">Eliminar</button>
+                <button @click="editBicycle(bicycle._id)" class="edit-button">Editar</button>
+                <button @click="deleteBicycle(bicycle._id)" class="delete-button">Eliminar</button>
             </li>
         </ul>
+        <button @click="addBicycle()" class="add-button"> + Crear Bicicleta</button>
     </div>
 </template>
 
 <script lang="ts">
 import router from '@/router';
+import { deleteBicycle } from '@/services/bicyclesService';
 import Bicycle from '@/types/Bicycle'
 import { defineComponent, PropType } from 'vue'
 
 export default defineComponent({
     props: {
-        bicycles: {
+        bicycleList: {
             required: true,
             type: Array as PropType<Bicycle[]>
         }
     },
     methods: {
-        editBicycle(bicycle: Bicycle) {
-            console.log('id', bicycle._id);
-            router.push({ path: '/edit', replace: true, params: {bicycleId: bicycle._id }});
+        editBicycle(id: string) {
+            router.push({ path: `/edit/${id}`, name:"edit", params: { id}});
+        },
+        addBicycle() {
+            router.push({ path: `/create`, name:"create"});
+        },
+        async deleteBicycle( id: string) {
+            const response = await deleteBicycle(id);
+            if (response.deletedCount > 0) {
+                const toRemove = this.bicycles.findIndex((obj) => obj._id === id);
+                // eslint-disable-next-line vue/no-mutating-props
+                this.bicycles.splice(toRemove, 1);
+            }
+            console.log(response);
         }
+    },
+    computed: {
+        bicycles () {
+            return this.bicycleList;
     }
+}
 })
 </script>
 
@@ -76,5 +94,8 @@ export default defineComponent({
     }
     .delete-button {
         background: red;
+    }
+    .add-button {
+        background: rgb(0, 134, 7);
     }
 </style>
