@@ -4,6 +4,7 @@ import HomeView from '../views/HomeView.vue'
 import BicyclesView from '../views/BicyclesView.vue'
 import FormView from '../views/FormView.vue'
 import LoginView from '../views/LoginView.vue'
+import { auth } from '../firebase'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -54,6 +55,19 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.path === '/login' && auth.currentUser) {
+    next('/')
+    return;
+  }
+  if (to.matched.some(record => record.meta.requiresAuth) && !auth.currentUser) {
+    next('/login')
+    return;
+  }
+
+  next();
 })
 
 export default router

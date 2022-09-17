@@ -1,5 +1,5 @@
 <template>
-	<form @submit.prevent="handleSubmit">
+	<form @submit.prevent="login">
 		<label>Usuario</label>
 		<input v-model="loginForm.email" type="email" placeholder="Email address" required>
 		<label>Contraseña</label>
@@ -8,17 +8,18 @@
 		<GoogleLogin :callback="handleSignIn" prompt style="margin: 20px 5px 20px 5px"/>
 	</form>
 
-	<form @submit.prevent="handleRegister">
+	<form @submit.prevent="register">
 		<label>Usuario</label>
 		<input v-model="registerForm.email" type="text" placeholder="Email address" required>
 		<label>Contraseña</label>
-		<input  v-model="registerForm.passwrod" type="password" placeholder="Password" required>
+		<input  v-model="registerForm.password" type="password" placeholder="Password" required>
 		<button> Registrar </button>
 	</form>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
+import { useStore } from 'vuex'
 import { GoogleLogin, decodeCredential } from 'vue3-google-login';
 
 //TODO: Finish Register https://www.youtube.com/watch?v=Kc-FbPSdezg&t=1611s&ab_channel=TylerPotts
@@ -27,8 +28,17 @@ export default defineComponent({
 
 		const registerForm = ref({});
 		const loginForm = ref({});
+		const store = useStore();
+
+		const login = () => {
+			store.dispatch('login', loginForm.value);
+		}
+
+		const register = () => {
+			store.dispatch('register', registerForm.value);
+		}
 		return {
-			registerForm, loginForm
+			registerForm, loginForm, login, register
 		};
 	},
 	components: {
