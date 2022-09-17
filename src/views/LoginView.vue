@@ -1,5 +1,6 @@
 <template>
 	<form @submit.prevent="login">
+		<h2>Ingresar</h2>
 		<label>Usuario</label>
 		<input v-model="loginForm.email" type="email" placeholder="Email address" required>
 		<label>Contraseña</label>
@@ -9,6 +10,7 @@
 	</form>
 
 	<form @submit.prevent="register">
+		<h2>Registrar</h2>
 		<label>Usuario</label>
 		<input v-model="registerForm.email" type="text" placeholder="Email address" required>
 		<label>Contraseña</label>

@@ -1,7 +1,7 @@
 import Bicycle from "@/types/Bicycle";
 import axios from "axios";
 
-const bicyclesUrl: string = process.env.VUE_APP_BICYCLES_API || 'http://localhost:3002';
+const bicyclesUrl: string = process.env.VUE_APP_BICYCLES_API_TEST || 'http://localhost:8080';
 
 async function getBicycles() {
     const url = `${bicyclesUrl}/bicycles`;

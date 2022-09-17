@@ -5,14 +5,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, onBeforeMount } from 'vue'
+import { useStore } from 'vuex'
 import BicycleHeader from './components/BicycleHeader.vue'
 
 
 export default defineComponent({
   name: 'App',
   components: {BicycleHeader},
-  setup() {},
+  setup() {
+    const store = useStore()
+
+    onBeforeMount(() => {
+      store.dispatch('fetchUser')
+    })
+  },
   methods: {
   }
 })
