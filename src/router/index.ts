@@ -3,8 +3,14 @@ import BicycleForm from '../components/BicycleForm.vue'
 import HomeView from '../views/HomeView.vue'
 import BicyclesView from '../views/BicyclesView.vue'
 import FormView from '../views/FormView.vue'
+import LoginView from '../views/LoginView.vue'
 
 const routes: Array<RouteRecordRaw> = [
+  {
+    path: '/login',
+    name: 'login',
+    component: LoginView
+  },
   {
     path: '/',
     name: 'home',
