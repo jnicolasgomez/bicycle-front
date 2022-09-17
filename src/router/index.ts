@@ -14,12 +14,18 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: HomeView,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/bicycles',
     name: 'bicycles',
-    component: BicyclesView
+    component: BicyclesView,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/edit/:id',
@@ -27,6 +33,9 @@ const routes: Array<RouteRecordRaw> = [
     component: FormView,
     props: {
       type: "Editar"
+    },
+    meta: {
+      requiresAuth: true
     }
   },
   {
@@ -35,6 +44,9 @@ const routes: Array<RouteRecordRaw> = [
     component: FormView,
     props: {
       type: "Crear"
+    },
+    meta: {
+      requiresAuth: true
     }
   }
 ]
