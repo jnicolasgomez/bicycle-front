@@ -3,13 +3,16 @@ import router from '@/router'
 import { auth } from '../firebase'
 import { createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signOut } from 'firebase/auth'
+  signOut, User } from 'firebase/auth'
 
 export default createStore({
   state: {
     user: null
   },
   getters: {
+    user (state): User | null {
+      return state.user;
+    }
   },
   mutations: {
     SET_USER (state, user) {
@@ -81,7 +84,6 @@ export default createStore({
           commit('CLEAR_USER')
         } else {
           commit('SET_USER', user)
-
           if (router.currentRoute.value.path === '/login') {
             router.push('/')
           }

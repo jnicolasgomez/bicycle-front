@@ -1,29 +1,68 @@
+import store from "@/store";
 import Bicycle from "@/types/Bicycle";
 import axios from "axios";
+import { User } from 'firebase/auth'
 
-const bicyclesUrl: string = process.env.VUE_APP_BICYCLES_API_TEST || 'http://localhost:8080';
+const bicyclesUrl: string = process.env.VUE_APP_BICYCLES_API || 'http://localhost:3002';
 
 async function getBicycles() {
+    let response;
     const url = `${bicyclesUrl}/bicycles`;
-    const response = await axios.get(url);
+    const user: User = store.getters.user;
+    const headers = {
+        Authorization: "Bearer " + await user.getIdToken(true)
+    };
+    try {
+        response = await axios.get(url, { headers });
+    } catch (error) {
+        console.log("file: bicyclesService.ts ~ line 13 ~ getBicycles ~ error", error)
+    }
+  
     return response.data;
 }
 
 async function createBicycle(bicycle: Bicycle) {
+    let response;
     const url = `${bicyclesUrl}/bicycles`;
-    const response = await axios.post(url, bicycle);
+    const user: User = store.getters.user;
+    const headers = {
+        Authorization: "Bearer " + await user.getIdToken(true)
+    };
+    try {
+        response = await axios.post(url, bicycle, { headers });
+    } catch (error) {
+        console.log("file: bicyclesService.ts ~ line 25 ~ createBicycle ~ error", error)
+    }
     return response.data;
 }
 
 async function editBicycle(id: string, bicycle: Bicycle) {
+    let response;
     const url = `${bicyclesUrl}/bicycles/${id}`;
-    const response = await axios.put(url, bicycle);
+    const user: User = store.getters.user;
+    const headers = {
+        Authorization: "Bearer " + await user.getIdToken(true)
+    };
+    try {
+        response = await axios.put(url, bicycle, { headers });
+    } catch (error) {
+        console.log("file: bicyclesService.ts ~ line 36 ~ editBicycle ~ error", error)
+    }
     return response.data;
 }
 
 async function deleteBicycle(id: string) {
+    let response;
     const url = `${bicyclesUrl}/bicycles/${id}`;
-    const response = await axios.delete(url);
+    const user: User = store.getters.user;
+    const headers = {
+        Authorization: "Bearer " + await user.getIdToken(true)
+    };
+    try {
+        response = await axios.delete(url, { headers });
+    } catch (error) {
+        console.log("file: bicyclesService.ts ~ line 47 ~ deleteBicycle ~ error", error)
+    }
     return response.data;
 }
 
