@@ -6,7 +6,7 @@
 		<label>Contraseña</label>
 		<input  v-model="loginForm.password" type="password" placeholder="Password" required>
 		<button> Ingresar </button>
-		<GoogleLogin :callback="googleHandleSignIn" prompt style="margin: 20px 5px 20px 5px"/>
+		<!--GoogleLogin :callback="googleHandleSignIn" prompt style="margin: 20px 5px 20px 5px"/-->
 	</form>
 
 	<form @submit.prevent="register">
@@ -22,9 +22,8 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { useStore } from 'vuex'
-import { GoogleLogin, decodeCredential } from 'vue3-google-login';
+// import { GoogleLogin, decodeCredential } from 'vue3-google-login';
 
-//TODO: Finish Register https://www.youtube.com/watch?v=Kc-FbPSdezg&t=1611s&ab_channel=TylerPotts
 export default defineComponent({
 	setup() {
 
@@ -44,13 +43,13 @@ export default defineComponent({
 		};
 	},
 	components: {
-		GoogleLogin
+		// GoogleLogin
 	},
 	methods: {
-		async googleHandleSignIn(response) {
+		async googleHandleSignIn() {
 			// decodeCredential will retrive the JWT payload from the credential
-			const userData = decodeCredential(response.credential)
-			console.log("Handle the userData", userData)
+			// const userData = decodeCredential(response.credential)
+			// console.log("Handle the userData", userData)
 		}
 	}
 })
