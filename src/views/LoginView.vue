@@ -6,7 +6,7 @@
 		<label>Contraseña</label>
 		<input  v-model="loginForm.password" type="password" placeholder="Password" required>
 		<button> Ingresar </button>
-		<GoogleLogin :callback="handleSignIn" prompt style="margin: 20px 5px 20px 5px"/>
+		<GoogleLogin :callback="googleHandleSignIn" prompt style="margin: 20px 5px 20px 5px"/>
 	</form>
 
 	<form @submit.prevent="register">
@@ -47,7 +47,7 @@ export default defineComponent({
 		GoogleLogin
 	},
 	methods: {
-		async handleSignIn(response) {
+		async googleHandleSignIn(response) {
 			// decodeCredential will retrive the JWT payload from the credential
 			const userData = decodeCredential(response.credential)
 			console.log("Handle the userData", userData)
