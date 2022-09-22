@@ -48,13 +48,14 @@
                 maxZoom: 18,
                 minZoom: 10,
                 initialCoordinates: [6.2476, -75.5658],
-                iconWidth: 40,
-                iconHeight: 40
+                iconWidth: 35,
+                iconHeight: 35
             };
         },
         computed: {
             iconUrl() {
-                return `https://freesvg.org/img/1553102662.png`;
+                // return `https://freesvg.org/img/1553102662.png`;
+                return 'https://storage.cloud.google.com/red-bicycle-assets/bike2.svg';
             },
             iconSize() {
                 return [this.iconWidth, this.iconHeight];
