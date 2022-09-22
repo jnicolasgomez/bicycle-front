@@ -5,7 +5,7 @@ import { User } from 'firebase/auth'
 
 const bicyclesUrl: string = process.env.VUE_APP_BICYCLES_API || 'http://localhost:3002';
 
-async function getBicycles() {
+async function getBicycles(): Promise<Bicycle[]>{
     let response;
     const url = `${bicyclesUrl}/bicycles`;
     const user: User = store.getters.user;
@@ -21,7 +21,7 @@ async function getBicycles() {
     return response.data;
 }
 
-async function createBicycle(bicycle: Bicycle) {
+async function createBicycle(bicycle: Bicycle): Promise<Bicycle>{
     let response;
     const url = `${bicyclesUrl}/bicycles`;
     const user: User = store.getters.user;
@@ -36,7 +36,7 @@ async function createBicycle(bicycle: Bicycle) {
     return response.data;
 }
 
-async function editBicycle(id: string, bicycle: Bicycle) {
+async function editBicycle(id: string, bicycle: Bicycle): Promise<Bicycle>{
     let response;
     const url = `${bicyclesUrl}/bicycles/${id}`;
     const user: User = store.getters.user;

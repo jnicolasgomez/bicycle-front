@@ -3,7 +3,6 @@
         <l-map v-model="zoom"
         v-model:zoom="zoom"
         :maxZoom="maxZoom"
-        :minZoom="minZoom"
         :center="initialCoordinates"
         @click="addMarker"
         >

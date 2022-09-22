@@ -2,6 +2,7 @@
     <div class="bicycle-list">
         <ul>
             <li v-for="bicycle in bicycles" :key="bicycle._id">
+                <h2>{{ bicycle.brand }}</h2>
                 <h2>{{ bicycle.model }}</h2>
                 <div class="color">
                     <p> {{ bicycle.color}} </p>
@@ -44,7 +45,6 @@ export default defineComponent({
                 // eslint-disable-next-line vue/no-mutating-props
                 this.bicycles.splice(toRemove, 1);
             }
-            console.log(response);
         }
     },
     computed: {
