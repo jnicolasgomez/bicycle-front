@@ -28,6 +28,7 @@
     import "leaflet/dist/leaflet.css"
     import Bicycle from '@/types/Bicycle'
     import { defineComponent, PropType } from "@vue/runtime-core";
+
     export default defineComponent({
         components: {
             LMap,
@@ -48,13 +49,14 @@
                 maxZoom: 18,
                 minZoom: 10,
                 initialCoordinates: [6.2476, -75.5658],
-                iconWidth: 40,
-                iconHeight: 40
+                iconWidth: 50,
+                iconHeight: 50
             };
         },
         computed: {
             iconUrl() {
-                return `https://freesvg.org/img/1553102662.png`;
+                // return `https://freesvg.org/img/1553102662.png`;
+                return "https://storage.cloud.google.com/red-bicycle-assets/pin_svg5.svg"
             },
             iconSize() {
                 return [this.iconWidth, this.iconHeight];
