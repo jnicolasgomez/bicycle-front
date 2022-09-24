@@ -55,8 +55,7 @@
         },
         computed: {
             iconUrl() {
-                // return `https://freesvg.org/img/1553102662.png`;
-                return "https://storage.cloud.google.com/red-bicycle-assets/pin_svg5.svg"
+                return "https://storage.cloud.google.com/red-bicycle-assets/pin_svg7.svg"
             },
             iconSize() {
                 return [this.iconWidth, this.iconHeight];
