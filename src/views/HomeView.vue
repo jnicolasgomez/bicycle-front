@@ -1,27 +1,24 @@
 <template>
   <div class="home">
     <h1>Red Bicicletas Mapa</h1>
-    <BicycleMap :bicycles = "bicycles" />
+    <BicycleMap />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent } from 'vue';
+import { useStore } from 'vuex';
 import BicycleMap from '../components/BicycleMap.vue'
-import {getBicycles} from '../services/bicyclesService'
-import Bicycle from '../types/Bicycle';
 export default defineComponent({
   name: 'HomeView',
   components: {
     BicycleMap,
   },
   setup () {
-    const bicycles = ref<Bicycle[]>([]);
-    return { bicycles }
   },
-  async mounted() {
-    const response = await getBicycles();
-    this.bicycles = response;
+  async created() {
+    const store = useStore();
+    await store.dispatch('getBicycles');
   },
 });
 </script>

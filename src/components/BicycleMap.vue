@@ -26,8 +26,8 @@
 <script lang="ts">
     import { LMap, LTileLayer, LIcon, LMarker, LPopup } from "@vue-leaflet/vue-leaflet";
     import "leaflet/dist/leaflet.css"
-    import Bicycle from '@/types/Bicycle'
-    import { defineComponent, PropType } from "@vue/runtime-core";
+    import { defineComponent } from "@vue/runtime-core";
+import store from "@/store";
 
     export default defineComponent({
         components: {
@@ -36,12 +36,6 @@
             LIcon,
             LMarker,
             LPopup
-        },
-        props: {
-            bicycles: {
-                required: true,
-                type: Array as PropType<Bicycle[]>
-            }
         },
         data() {
             return {
@@ -57,19 +51,16 @@
             iconUrl() {
                 return "https://storage.cloud.google.com/red-bicycle-assets/pin_svg7.svg"
             },
-            iconSize() {
+            iconSize(): [number, number] {
                 return [this.iconWidth, this.iconHeight];
             },
+            bicycles () {
+                return store.getters.bicycles;
+            }
         },
         methods: {
             log(a: string) {
                 console.log(a);
-            },
-            changeIcon() {
-                this.iconWidth += 2;
-                if (this.iconWidth > this.iconHeight) {
-                    this.iconWidth = Math.floor(this.iconHeight / 2);
-                }
             },
             addMarker(event: any) {
                 if (event.latlng)

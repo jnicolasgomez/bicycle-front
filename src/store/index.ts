@@ -4,23 +4,32 @@ import { auth } from '../firebase'
 import { createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut, User } from 'firebase/auth'
+import Bicycle from '@/types/Bicycle'
+import { getBicycles } from '@/services/bicyclesService'
 
 export default createStore({
   state: {
-    user: null
+    user: null,
+    bicycles: []
   },
   getters: {
     user (state): User | null {
       return state.user;
+    },
+    bicycles (state): Bicycle[] {
+      return state.bicycles;
     }
   },
   mutations: {
     SET_USER (state, user) {
-      state.user = user
+      state.user = user;
     },
     CLEAR_USER (state) {
-      state.user = null
-    }
+      state.user = null;
+    },
+    SET_BICYCLES (state, bicycles) {
+      state.bicycles = bicycles;
+    },
   },
   actions: {
     async login ({ commit }, details ) {
@@ -89,7 +98,21 @@ export default createStore({
           }
         }
       })
-    }
+    },
+    async getBicycles ({ commit } ) {
+      let bicycles: Bicycle[] | null = [];
+      try {
+        bicycles = await getBicycles();
+        commit('SET_BICYCLES', bicycles);
+        localStorage.setItem('bicycles', JSON.stringify(bicycles));
+      } catch (error: any ) {
+        const localBicycles = localStorage.getItem('bicycles');
+        if (localBicycles) {
+          bicycles = JSON.parse(localBicycles) as Bicycle[];
+          commit('SET_BICYCLES', bicycles);
+        }
+      }
+    },
   },
   modules: {
   }

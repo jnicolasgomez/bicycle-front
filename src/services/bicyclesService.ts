@@ -1,11 +1,11 @@
 import store from "@/store";
 import Bicycle from "@/types/Bicycle";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { User } from 'firebase/auth'
 
 const bicyclesUrl: string = process.env.VUE_APP_BICYCLES_API || 'http://localhost:3002';
 
-async function getBicycles() {
+async function getBicycles(): Promise<Bicycle[]> {
     let response;
     const url = `${bicyclesUrl}/bicycles`;
     const user: User = store.getters.user;
@@ -14,8 +14,9 @@ async function getBicycles() {
     };
     try {
         response = await axios.get(url, { headers });
-    } catch (error) {
+    } catch (error: any | AxiosError) {
         console.log("file: bicyclesService.ts ~ line 13 ~ getBicycles ~ error", error)
+        throw error;
     }
   
     return response.data;
