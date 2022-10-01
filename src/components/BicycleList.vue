@@ -20,16 +20,10 @@
 <script lang="ts">
 import router from '@/router';
 import { deleteBicycle } from '@/services/bicyclesService';
-import Bicycle from '@/types/Bicycle'
-import { defineComponent, PropType } from 'vue'
+import store from '@/store';
+import { defineComponent } from 'vue';
 
 export default defineComponent({
-    props: {
-        bicycleList: {
-            required: true,
-            type: Array as PropType<Bicycle[]>
-        }
-    },
     methods: {
         editBicycle(id: string) {
             router.push({ path: `/edit/${id}`, name:"edit", params: { id}});
@@ -49,9 +43,9 @@ export default defineComponent({
     },
     computed: {
         bicycles () {
-            return this.bicycleList;
+            return store.getters.bicycles;
+        }
     }
-}
 })
 </script>
 
